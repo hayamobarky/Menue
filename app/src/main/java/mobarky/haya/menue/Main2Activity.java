@@ -16,16 +16,13 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.sql.Time;
 import java.util.Calendar;
 
-
-class MainActvity extends AppCompatActivity implements View.OnClickListener,DialogInterface.OnClickListener{
+public class Main2Activity extends AppCompatActivity implements View.OnClickListener,DialogInterface.OnClickListener{
     private Button btnDate;
     private TextView tvShowdate;
     private Button btnTime;
     private TextView tvShowtime;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +32,8 @@ class MainActvity extends AppCompatActivity implements View.OnClickListener,Dial
         tvShowdate = (TextView) findViewById(R.id.tvShowdate);
         btnTime = (Button) findViewById(R.id.btnTime);
         tvShowtime = (TextView) findViewById(R.id.tvShowtime);
+        btnDate.setOnClickListener(this);
+        btnTime.setOnClickListener(this);
 
 
 
@@ -121,19 +120,19 @@ class MainActvity extends AppCompatActivity implements View.OnClickListener,Dial
 
         if (v == btnTime) {
             Calendar c1 = Calendar.getInstance();
-            final int hour2 = c1.get(Calendar.HOUR);
+            final int hour = c1.get(Calendar.HOUR);
 
-            final int minute2 = c1.get(Calendar.MINUTE);
+            final int minute = c1.get(Calendar.MINUTE);
 
-            final int second2 = c1.get(Calendar.SECOND);
+            final int second = c1.get(Calendar.SECOND);
             //
             TimePickerDialog.OnTimeSetListener timelistener = new TimePickerDialog.OnTimeSetListener() {
                 @Override
                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                    tvShowtime.setText(hourOfDay + ":" + minute);
+                    tvShowtime.setText(second + "/" + minute + "/" + hour);
                 }
             };
-                    TimePickerDialog timePickerDialog = new TimePickerDialog(this, timelistener, hour2, minute2, true);
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this, timelistener, hour, minute, true);
             timePickerDialog.show();
         }
 
@@ -145,11 +144,3 @@ class MainActvity extends AppCompatActivity implements View.OnClickListener,Dial
 
     }
 }
-
-
-
-
-
-
-
-
